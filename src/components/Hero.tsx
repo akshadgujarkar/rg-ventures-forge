@@ -4,8 +4,15 @@ import { Button } from "./ui/button";
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5" />
+      
+      {/* Animated background element */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-primary/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-accent/5 rounded-full blur-3xl animate-pulse" />
+      </div>
+
       <div className="container relative z-10 px-4 py-32">
         <div className="text-center space-y-8 animate-fade-in">
           <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
