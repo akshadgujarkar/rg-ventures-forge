@@ -65,6 +65,28 @@
   .hover-card {
     @apply transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/10;
   }
+  
+  /* New styles for enhanced modern look */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+  }
+  
+  .glass-effect {
+    @apply backdrop-blur-md bg-background/40 border border-border/20;
+  }
+  
+  .btn-glow {
+    @apply relative overflow-hidden;
+  }
+  
+  .btn-glow::after {
+    @apply content-[''] absolute inset-0 rounded-md opacity-0 transition-opacity duration-500;
+    box-shadow: 0 0 20px 5px theme('colors.primary');
+  }
+  
+  .btn-glow:hover::after {
+    @apply opacity-100;
+  }
 }
 
 @keyframes fadeIn {
@@ -75,5 +97,75 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Loading animation */
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite;
+}
+
+.loader::before,
+.loader::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(transparent, hsla(var(--primary), 1));
+}
+
+.loader::after {
+  transform: rotate(60deg);
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

@@ -44,19 +44,28 @@ const services = [
 
 export const Services = () => {
   return (
-    <section className="py-24 bg-secondary/50">
+    <section id="services" className="py-24 bg-secondary/50">
       <div className="container px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4">Our Services</h2>
+          <div className="inline-block mb-3 px-3 py-1 bg-primary/10 rounded-full backdrop-blur-sm">
+            <span className="text-sm font-medium text-primary">What We Offer</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">Our Services</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Comprehensive industrial solutions tailored to your needs
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => (
-            <Card key={service.title} className="hover-card bg-background/50 backdrop-blur">
+          {services.map((service, index) => (
+            <Card 
+              key={service.title} 
+              className="hover-card bg-background/50 backdrop-blur border border-border/50 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_15px_rgba(155,135,245,0.15)]"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
               <CardHeader>
-                <service.icon className="h-12 w-12 text-primary mb-4" />
+                <div className="p-3 bg-primary/10 rounded-lg w-fit mb-4">
+                  <service.icon className="h-6 w-6 text-primary" />
+                </div>
                 <CardTitle>{service.title}</CardTitle>
                 <CardDescription>{service.description}</CardDescription>
               </CardHeader>
