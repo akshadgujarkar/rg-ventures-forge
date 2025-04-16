@@ -1,11 +1,13 @@
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CarFront } from "lucide-react";
 import { Button } from "./ui/button";
 import { useEffect, useRef } from "react";
 
 export const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const carCanvasRef = useRef<HTMLCanvasElement>(null);
   
+  // Handle the particle animation
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -115,12 +117,138 @@ export const Hero = () => {
     };
   }, []);
   
+  // Handle the delivery car animation
+  useEffect(() => {
+    const canvas = carCanvasRef.current;
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    
+    // Car properties
+    const carWidth = 120;
+    const carHeight = 60;
+    const wheelRadius = 15;
+    let carX = -carWidth;
+    const carY = canvas.height - 150;
+    let speed = 2;
+    
+    // Tracks for industrial look
+    const drawTracks = () => {
+      ctx.strokeStyle = 'rgba(155, 135, 245, 0.3)';
+      ctx.lineWidth = 2;
+      
+      // Draw dashed tracks
+      ctx.setLineDash([15, 10]);
+      
+      // Bottom track
+      ctx.beginPath();
+      ctx.moveTo(0, carY + carHeight - 10);
+      ctx.lineTo(canvas.width, carY + carHeight - 10);
+      ctx.stroke();
+      
+      // Reset line dash
+      ctx.setLineDash([]);
+    };
+    
+    // Draw the delivery car
+    const drawCar = (x: number, y: number) => {
+      // Car body
+      ctx.fillStyle = '#333';
+      ctx.beginPath();
+      ctx.roundRect(x, y, carWidth, carHeight - 20, 8);
+      ctx.fill();
+      
+      // Cabin
+      ctx.fillStyle = '#222';
+      ctx.beginPath();
+      ctx.roundRect(x + carWidth * 0.6, y - carHeight * 0.3, carWidth * 0.3, carHeight * 0.3, 5);
+      ctx.fill();
+      
+      // Windows
+      ctx.fillStyle = '#6E59A5';
+      ctx.beginPath();
+      ctx.roundRect(x + carWidth * 0.65, y - carHeight * 0.25, carWidth * 0.2, carHeight * 0.15, 3);
+      ctx.fill();
+      
+      // Cargo area
+      ctx.fillStyle = '#444';
+      ctx.beginPath();
+      ctx.roundRect(x + 10, y + 5, carWidth * 0.5, carHeight - 30, 3);
+      ctx.fill();
+      
+      // Front lights
+      ctx.fillStyle = '#f8f8f8';
+      ctx.beginPath();
+      ctx.arc(x + carWidth - 5, y + 15, 5, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Wheels
+      ctx.fillStyle = '#111';
+      ctx.beginPath();
+      ctx.arc(x + wheelRadius + 10, y + carHeight - wheelRadius - 5, wheelRadius, 0, Math.PI * 2);
+      ctx.fill();
+      
+      ctx.beginPath();
+      ctx.arc(x + carWidth - wheelRadius - 10, y + carHeight - wheelRadius - 5, wheelRadius, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Wheel rims
+      ctx.fillStyle = '#9b87f5';
+      ctx.beginPath();
+      ctx.arc(x + wheelRadius + 10, y + carHeight - wheelRadius - 5, wheelRadius / 2, 0, Math.PI * 2);
+      ctx.fill();
+      
+      ctx.beginPath();
+      ctx.arc(x + carWidth - wheelRadius - 10, y + carHeight - wheelRadius - 5, wheelRadius / 2, 0, Math.PI * 2);
+      ctx.fill();
+    };
+    
+    // Animate the car
+    const animateCar = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      drawTracks();
+      drawCar(carX, carY);
+      
+      carX += speed;
+      
+      // Reset car position when it goes off screen
+      if (carX > canvas.width) {
+        carX = -carWidth;
+        // Randomize speed slightly for variety
+        speed = 1.5 + Math.random() * 1;
+      }
+      
+      requestAnimationFrame(animateCar);
+    };
+    
+    animateCar();
+    
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+    };
+  }, []);
+  
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0 z-0" 
         style={{ opacity: 0.6 }}
+      />
+      
+      <canvas
+        ref={carCanvasRef}
+        className="absolute inset-0 z-0"
       />
       
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5" />
