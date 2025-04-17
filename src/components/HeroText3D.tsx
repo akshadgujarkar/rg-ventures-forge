@@ -2,6 +2,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Text3D, Center, Float, OrbitControls } from '@react-three/drei';
+import * as THREE from 'three';
 
 const Text3DModel = () => {
   const textRef = useRef<THREE.Mesh>(null!);
