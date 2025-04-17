@@ -1,11 +1,11 @@
+
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
-import { useEffect, useRef } from "react";
+import { useRef, useEffect } from "react";
 import { HeroText3D } from "./HeroText3D";
 
 export const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const carCanvasRef = useRef<HTMLCanvasElement>(null);
   
   // Handle the particle animation
   useEffect(() => {
@@ -26,7 +26,7 @@ export const Hero = () => {
     
     // Create particles
     const particlesArray: Particle[] = [];
-    const numberOfParticles = 50;
+    const numberOfParticles = 80;
     
     class Particle {
       x: number;
@@ -35,15 +35,17 @@ export const Hero = () => {
       speedX: number;
       speedY: number;
       color: string;
+      opacity: number;
       
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 5 + 1;
-        this.speedX = (Math.random() - 0.5) * 1;
-        this.speedY = (Math.random() - 0.5) * 1;
+        this.size = Math.random() * 3 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.7;
+        this.speedY = (Math.random() - 0.5) * 0.7;
+        this.opacity = Math.random() * 0.5 + 0.2;
         
-        // Create a color palette that matches the industrial theme
+        // Create a color palette that matches the theme
         const colors = ['#9b87f5', '#6E59A5', '#403E43', '#222222'];
         this.color = colors[Math.floor(Math.random() * colors.length)];
       }
@@ -66,7 +68,9 @@ export const Hero = () => {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
+        ctx.globalAlpha = this.opacity;
         ctx.fill();
+        ctx.globalAlpha = 1;
       }
     }
     
@@ -77,17 +81,16 @@ export const Hero = () => {
     
     // Connect particles with lines
     const connectParticles = () => {
-      let opacityValue = 1;
       for (let a = 0; a < particlesArray.length; a++) {
         for (let b = a; b < particlesArray.length; b++) {
           const dx = particlesArray[a].x - particlesArray[b].x;
           const dy = particlesArray[a].y - particlesArray[b].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < 100) {
-            opacityValue = 1 - (distance / 100);
-            ctx.strokeStyle = `rgba(155, 135, 245, ${opacityValue * 0.2})`;
-            ctx.lineWidth = 1;
+          if (distance < 120) {
+            const opacity = 1 - (distance / 120);
+            ctx.strokeStyle = `rgba(155, 135, 245, ${opacity * 0.15})`;
+            ctx.lineWidth = 0.8;
             ctx.beginPath();
             ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
             ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
@@ -117,152 +120,33 @@ export const Hero = () => {
     };
   }, []);
   
-  // Handle the delivery car animation
-  useEffect(() => {
-    const canvas = carCanvasRef.current;
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    
-    // Car properties
-    const carWidth = 120;
-    const carHeight = 60;
-    const wheelRadius = 15;
-    let carX = -carWidth;
-    const carY = canvas.height - 150;
-    let speed = 2;
-    
-    // Tracks for industrial look
-    const drawTracks = () => {
-      ctx.strokeStyle = 'rgba(155, 135, 245, 0.3)';
-      ctx.lineWidth = 2;
-      
-      // Draw dashed tracks
-      ctx.setLineDash([15, 10]);
-      
-      // Bottom track
-      ctx.beginPath();
-      ctx.moveTo(0, carY + carHeight - 10);
-      ctx.lineTo(canvas.width, carY + carHeight - 10);
-      ctx.stroke();
-      
-      // Reset line dash
-      ctx.setLineDash([]);
-    };
-    
-    // Draw the delivery car
-    const drawCar = (x: number, y: number) => {
-      // Car body
-      ctx.fillStyle = '#333';
-      ctx.beginPath();
-      ctx.roundRect(x, y, carWidth, carHeight - 20, 8);
-      ctx.fill();
-      
-      // Cabin
-      ctx.fillStyle = '#222';
-      ctx.beginPath();
-      ctx.roundRect(x + carWidth * 0.6, y - carHeight * 0.3, carWidth * 0.3, carHeight * 0.3, 5);
-      ctx.fill();
-      
-      // Windows
-      ctx.fillStyle = '#6E59A5';
-      ctx.beginPath();
-      ctx.roundRect(x + carWidth * 0.65, y - carHeight * 0.25, carWidth * 0.2, carHeight * 0.15, 3);
-      ctx.fill();
-      
-      // Cargo area
-      ctx.fillStyle = '#444';
-      ctx.beginPath();
-      ctx.roundRect(x + 10, y + 5, carWidth * 0.5, carHeight - 30, 3);
-      ctx.fill();
-      
-      // Front lights
-      ctx.fillStyle = '#f8f8f8';
-      ctx.beginPath();
-      ctx.arc(x + carWidth - 5, y + 15, 5, 0, Math.PI * 2);
-      ctx.fill();
-      
-      // Wheels
-      ctx.fillStyle = '#111';
-      ctx.beginPath();
-      ctx.arc(x + wheelRadius + 10, y + carHeight - wheelRadius - 5, wheelRadius, 0, Math.PI * 2);
-      ctx.fill();
-      
-      ctx.beginPath();
-      ctx.arc(x + carWidth - wheelRadius - 10, y + carHeight - wheelRadius - 5, wheelRadius, 0, Math.PI * 2);
-      ctx.fill();
-      
-      // Wheel rims
-      ctx.fillStyle = '#9b87f5';
-      ctx.beginPath();
-      ctx.arc(x + wheelRadius + 10, y + carHeight - wheelRadius - 5, wheelRadius / 2, 0, Math.PI * 2);
-      ctx.fill();
-      
-      ctx.beginPath();
-      ctx.arc(x + carWidth - wheelRadius - 10, y + carHeight - wheelRadius - 5, wheelRadius / 2, 0, Math.PI * 2);
-      ctx.fill();
-    };
-    
-    // Animate the car
-    const animateCar = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      drawTracks();
-      drawCar(carX, carY);
-      
-      carX += speed;
-      
-      // Reset car position when it goes off screen
-      if (carX > canvas.width) {
-        carX = -carWidth;
-        // Randomize speed slightly for variety
-        speed = 1.5 + Math.random() * 1;
-      }
-      
-      requestAnimationFrame(animateCar);
-    };
-    
-    animateCar();
-    
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-    };
-  }, []);
-  
   return (
-    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16">
+    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-background via-background/95 to-background">
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0 z-0" 
-        style={{ opacity: 0.6 }}
       />
       
-      <canvas
-        ref={carCanvasRef}
-        className="absolute inset-0 z-0"
-      />
-      
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/70 to-primary/10 z-10" />
       
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden z-0">
         <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-primary/5 rounded-full blur-3xl animate-pulse" />
         <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-accent/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s' }} />
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s' }} />
       </div>
 
-      <div className="container relative z-20 px-4 py-16 flex flex-col items-center">
-        <div className="inline-block mb-6 px-4 py-1 bg-secondary/50 rounded-full backdrop-blur-sm">
-          <span className="text-sm font-medium text-primary">Innovation Meets Excellence</span>
+      <div className="container relative z-20 px-4 md:px-6 py-24 flex flex-col items-center">
+        <div className="space-y-2 mb-8 text-center">
+          <div className="inline-block px-4 py-1.5 bg-secondary/50 rounded-full backdrop-blur-sm border border-border/30 mb-4">
+            <span className="text-sm font-medium text-primary">Innovating for Tomorrow</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70 pb-2">
+            Industrial Excellence
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-[700px] mx-auto">
+            Crafting innovative industrial solutions that drive growth and sustainability
+          </p>
         </div>
         
         {/* 3D Text component */}
@@ -270,15 +154,32 @@ export const Hero = () => {
           <HeroText3D />
         </div>
         
-        <div className="flex gap-4 justify-center mt-4 z-30">
-          <Button size="lg" className="group btn-glow">
-            Get Started
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8 z-30">
+          <Button size="lg" className="group btn-glow text-base px-8 py-6">
+            Explore Solutions
+            <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
           </Button>
-          <Button size="lg" variant="secondary">
-            Learn More
+          <Button size="lg" variant="secondary" className="text-base px-8 py-6">
+            Contact Us
           </Button>
         </div>
+
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center z-20">
+          {['20+ Years Experience', 'Global Presence', '500+ Projects', 'Industry Leaders'].map((stat, index) => (
+            <div key={index} className="p-4 rounded-xl backdrop-blur-sm border border-border/30 bg-background/40">
+              <p className="font-semibold text-foreground">{stat}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="absolute bottom-8 left-0 right-0 flex justify-center z-30">
+        <a 
+          href="#services" 
+          className="animate-bounce p-2 bg-background/30 backdrop-blur-sm rounded-full border border-border/30"
+        >
+          <ArrowRight className="h-5 w-5 rotate-90 text-primary" />
+        </a>
       </div>
     </section>
   );

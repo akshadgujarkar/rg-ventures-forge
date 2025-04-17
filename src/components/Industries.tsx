@@ -2,27 +2,33 @@
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { useEffect, useRef } from "react";
+import { ArrowRight } from "lucide-react";
 
 const industries = [
   {
     name: "Oil & Gas",
-    tags: ["Automation", "Safety", "Control"]
+    tags: ["Automation", "Safety", "Control"],
+    image: "https://images.unsplash.com/photo-1579684288361-5c1a2957cc58?w=500&h=350&q=80&fit=crop",
   },
   {
     name: "Infrastructure",
-    tags: ["Steel", "Fabrication", "Assembly"]
+    tags: ["Steel", "Fabrication", "Assembly"],
+    image: "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=500&h=350&q=80&fit=crop",
   },
   {
     name: "Manufacturing",
-    tags: ["Drives", "Automation", "Efficiency"]
+    tags: ["Drives", "Automation", "Efficiency"],
+    image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=500&h=350&q=80&fit=crop",
   },
   {
     name: "Renewable Energy",
-    tags: ["Solar", "Sustainable", "Green"]
+    tags: ["Solar", "Sustainable", "Green"],
+    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500&h=350&q=80&fit=crop",
   },
   {
     name: "Food & Pharma",
-    tags: ["Hygienic", "Precise", "Sterile"]
+    tags: ["Hygienic", "Precise", "Sterile"],
+    image: "https://images.unsplash.com/photo-1530377445326-f04e348b5500?w=500&h=350&q=80&fit=crop",
   },
 ];
 
@@ -66,33 +72,58 @@ export const Industries = () => {
   }, []);
   
   return (
-    <section id="industries" className="py-24">
-      <div className="container px-4">
+    <section id="industries" className="py-32 bg-gradient-to-b from-background via-background/95 to-secondary/30">
+      <div className="container px-4 md:px-6">
         <div className="text-center mb-16">
-          <div className="inline-block mb-3 px-3 py-1 bg-primary/10 rounded-full backdrop-blur-sm">
+          <div className="inline-block mb-3 px-3 py-1 bg-primary/10 rounded-full backdrop-blur-sm border border-border/30">
             <span className="text-sm font-medium text-primary">Our Expertise</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">Industries We Serve</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Expertise across diverse industrial sectors
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">Industries We Serve</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            Specialized solutions for diverse industrial sectors
           </p>
         </div>
-        <div className="flex flex-wrap justify-center gap-6">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {industries.map((industry, index) => (
-            <Card 
-              key={industry.name} 
-              className="p-6 hover-card bg-secondary/50 border-border/50 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_15px_rgba(155,135,245,0.15)] w-64"
-              style={{ animationDelay: `${index * 150}ms` }}
-              ref={(el) => cardsRef.current[index] = el}
-            >
-              <p className="text-xl font-semibold mb-4">{industry.name}</p>
-              <div className="flex flex-wrap gap-2">
-                {industry.tags.map(tag => (
-                  <Badge key={tag} variant="secondary" className="bg-background/50">{tag}</Badge>
-                ))}
-              </div>
-            </Card>
+            <div key={industry.name} className="relative group">
+              <Card 
+                ref={(el) => cardsRef.current[index] = el}
+                className="overflow-hidden h-[320px] border-border/30 bg-gradient-to-b from-secondary/50 to-background/80 backdrop-blur-sm hover:border-primary/30 transition-all duration-500"
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                <div className="absolute inset-0 overflow-hidden z-0">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40"
+                    style={{ backgroundImage: `url(${industry.image})` }}
+                  ></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent"></div>
+                </div>
+
+                <div className="h-full flex flex-col justify-end relative z-10 p-6">
+                  <h3 className="text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">{industry.name}</h3>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {industry.tags.map(tag => (
+                      <Badge key={tag} variant="secondary" className="bg-background/50 backdrop-blur-sm">{tag}</Badge>
+                    ))}
+                  </div>
+                  <div className="mt-auto flex items-center text-sm text-foreground/70 group-hover:text-primary transition-colors">
+                    <span>Learn more</span>
+                    <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </div>
+              </Card>
+            </div>
           ))}
+        </div>
+        
+        <div className="mt-16 p-8 rounded-2xl bg-primary/5 backdrop-blur-sm border border-border/30 max-w-4xl mx-auto text-center">
+          <h3 className="text-2xl font-semibold mb-4">Need custom solutions for your industry?</h3>
+          <p className="text-muted-foreground mb-6">Our experts can provide tailored approaches for your specific industrial needs</p>
+          <a href="#contact" className="inline-flex items-center text-primary hover:underline font-medium">
+            Contact our team
+            <ArrowRight className="ml-1 h-4 w-4" />
+          </a>
         </div>
       </div>
     </section>

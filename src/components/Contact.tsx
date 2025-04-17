@@ -1,60 +1,153 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
-import { ArrowRight, Mail, Phone, MapPin } from "lucide-react";
+import { ArrowRight, Mail, Phone, MapPin, Check } from "lucide-react";
+import { useRef, useState } from "react";
 
 export const Contact = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormState('submitting');
+    
+    // Simulate form submission
+    setTimeout(() => {
+      setFormState('success');
+      if (formRef.current) {
+        formRef.current.reset();
+      }
+    }, 1500);
+  };
+
   return (
-    <section id="contact" className="py-24 bg-secondary/50">
-      <div className="container px-4">
+    <section id="contact" className="py-32 bg-gradient-to-b from-secondary/30 via-background/95 to-background">
+      <div className="container px-4 md:px-6">
         <div className="text-center mb-16">
-          <div className="inline-block mb-3 px-3 py-1 bg-primary/10 rounded-full backdrop-blur-sm">
+          <div className="inline-block mb-3 px-3 py-1 bg-primary/10 rounded-full backdrop-blur-sm border border-border/30">
             <span className="text-sm font-medium text-primary">Get in Touch</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">Ready to Get Started?</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Connect with our experts for consultation and solutions
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">Ready to Transform Your Industry?</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            Connect with our experts for consultation and innovative solutions
           </p>
         </div>
-        <div className="max-w-3xl mx-auto">
-          <Card className="gradient-border overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-50" />
-            <CardHeader className="text-center relative z-10">
-              <CardTitle className="text-3xl">Ready to Get Started?</CardTitle>
-              <CardDescription className="text-lg">
-                Connect with our experts for consultation and solutions
-              </CardDescription>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <Card className="bg-gradient-to-br from-background/70 to-secondary/20 backdrop-blur-xl border-border/30 overflow-hidden">
+            <CardHeader>
+              <CardTitle className="text-2xl">Contact Information</CardTitle>
+              <CardDescription>Reach out to us through any of these channels</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6 relative z-10">
-              <div className="flex justify-center gap-6">
-                <Button className="group" size="lg">
-                  Contact Us
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-                <div className="flex flex-col items-center gap-2 p-4 rounded-lg hover:bg-background/30 transition-colors">
-                  <div className="p-2 bg-primary/10 rounded-full">
+            <CardContent className="space-y-8">
+              <div className="grid gap-6">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-primary/10 rounded-full">
                     <Mail className="h-5 w-5 text-primary" />
                   </div>
-                  <p className="font-medium">Email</p>
-                  <span className="text-sm text-muted-foreground">info@rgventures.com</span>
+                  <div>
+                    <p className="font-medium">Email</p>
+                    <a href="mailto:info@rgventures.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">info@rgventures.com</a>
+                  </div>
                 </div>
-                <div className="flex flex-col items-center gap-2 p-4 rounded-lg hover:bg-background/30 transition-colors">
-                  <div className="p-2 bg-primary/10 rounded-full">
+                
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-primary/10 rounded-full">
                     <Phone className="h-5 w-5 text-primary" />
                   </div>
-                  <p className="font-medium">Phone</p>
-                  <span className="text-sm text-muted-foreground">+1 (555) 123-4567</span>
+                  <div>
+                    <p className="font-medium">Phone</p>
+                    <a href="tel:+15551234567" className="text-sm text-muted-foreground hover:text-primary transition-colors">+1 (555) 123-4567</a>
+                  </div>
                 </div>
-                <div className="flex flex-col items-center gap-2 p-4 rounded-lg hover:bg-background/30 transition-colors">
-                  <div className="p-2 bg-primary/10 rounded-full">
+                
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-primary/10 rounded-full">
                     <MapPin className="h-5 w-5 text-primary" />
                   </div>
-                  <p className="font-medium">Address</p>
-                  <span className="text-sm text-muted-foreground">Mumbai, India</span>
+                  <div>
+                    <p className="font-medium">Address</p>
+                    <span className="text-sm text-muted-foreground">Mumbai, India</span>
+                  </div>
                 </div>
               </div>
+              
+              <div className="pt-4 border-t border-border/30">
+                <h4 className="text-lg font-medium mb-4">Our Global Presence</h4>
+                <ul className="space-y-2">
+                  {['United States', 'United Kingdom', 'Singapore', 'Australia'].map((location) => (
+                    <li key={location} className="flex items-center gap-2 text-sm">
+                      <Check className="h-4 w-4 text-primary" />
+                      <span>{location}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gradient-to-br from-background/70 to-secondary/20 backdrop-blur-xl border-border/30 overflow-hidden">
+            <CardHeader>
+              <CardTitle className="text-2xl">Send Us a Message</CardTitle>
+              <CardDescription>Fill out the form and we'll get back to you shortly</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-sm font-medium">Name</label>
+                    <input
+                      id="name"
+                      type="text"
+                      required
+                      className="w-full px-3 py-2 rounded-md bg-background/50 border border-border/50 focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/30 transition-colors"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-medium">Email</label>
+                    <input
+                      id="email"
+                      type="email"
+                      required
+                      className="w-full px-3 py-2 rounded-md bg-background/50 border border-border/50 focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/30 transition-colors"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="subject" className="text-sm font-medium">Subject</label>
+                  <input
+                    id="subject"
+                    type="text"
+                    className="w-full px-3 py-2 rounded-md bg-background/50 border border-border/50 focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/30 transition-colors"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-sm font-medium">Message</label>
+                  <textarea
+                    id="message"
+                    rows={4}
+                    required
+                    className="w-full px-3 py-2 rounded-md bg-background/50 border border-border/50 focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/30 transition-colors"
+                  ></textarea>
+                </div>
+                <Button 
+                  className="w-full group" 
+                  size="lg" 
+                  type="submit"
+                  disabled={formState === 'submitting'}
+                >
+                  {formState === 'idle' && (
+                    <>
+                      Send Message
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </>
+                  )}
+                  {formState === 'submitting' && 'Sending...'}
+                  {formState === 'success' && 'Message Sent!'}
+                  {formState === 'error' && 'Error - Try Again'}
+                </Button>
+              </form>
             </CardContent>
           </Card>
         </div>

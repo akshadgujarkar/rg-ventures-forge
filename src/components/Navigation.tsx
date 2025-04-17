@@ -22,19 +22,22 @@ export const Navigation = () => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? "bg-background/80 backdrop-blur-lg shadow-md" 
+          ? "bg-background/80 backdrop-blur-xl border-b border-border/20 shadow-lg shadow-primary/5" 
           : "bg-transparent"
       }`}
     >
-      <div className="container flex items-center justify-between h-16 px-4">
-        <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-          RG Ventures
-        </h1>
+      <div className="container flex items-center justify-between h-20 px-4 md:px-6">
+        <div className="flex items-center gap-2">
+          <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-accent"></div>
+          <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            RG Ventures
+          </h1>
+        </div>
         
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center space-x-10">
           {menuItems.map((item) => (
             <a
               key={item}
@@ -46,6 +49,12 @@ export const Navigation = () => {
           ))}
         </div>
 
+        <div className="hidden md:block">
+          <Button variant="outline" className="border-primary/30 hover:bg-primary/10">
+            Get Started
+          </Button>
+        </div>
+
         {/* Mobile Menu */}
         <Sheet>
           <SheetTrigger asChild className="md:hidden">
@@ -53,11 +62,15 @@ export const Navigation = () => {
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent>
-            <div className="flex flex-col space-y-6 mt-10">
-              <div className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-8">
-                RG Ventures
+          <SheetContent className="bg-background/95 backdrop-blur-xl border-l border-border/30">
+            <div className="flex flex-col space-y-8 mt-10">
+              <div className="flex items-center gap-2 mb-8">
+                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-accent"></div>
+                <div className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  RG Ventures
+                </div>
               </div>
+              
               {menuItems.map((item) => (
                 <a
                   key={item}
@@ -67,6 +80,8 @@ export const Navigation = () => {
                   {item}
                 </a>
               ))}
+              
+              <Button className="mt-4 w-full">Get Started</Button>
             </div>
           </SheetContent>
         </Sheet>
