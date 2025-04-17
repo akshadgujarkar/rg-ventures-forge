@@ -1,7 +1,8 @@
 
-import { ArrowRight, CarFront } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { useEffect, useRef } from "react";
+import { HeroText3D } from "./HeroText3D";
 
 export const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -265,14 +266,13 @@ export const Hero = () => {
           <div className="inline-block mb-2 px-4 py-1 bg-secondary/50 rounded-full backdrop-blur-sm">
             <span className="text-sm font-medium text-primary">Innovation Meets Excellence</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-            Industrial Innovation <br />Meets Excellence
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Your trusted partner in industrial solutions, offering cutting-edge technology, 
-            expert consultation, and comprehensive services for sustainable growth.
-          </p>
-          <div className="flex gap-4 justify-center">
+          
+          {/* 3D Text replacing the regular text */}
+          <div className="mb-8">
+            <HeroText3D />
+          </div>
+          
+          <div className="flex gap-4 justify-center mt-8">
             <Button size="lg" className="group btn-glow">
               Get Started
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
