@@ -1,7 +1,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame, extend, useThree } from '@react-three/fiber';
-import { OrbitControls, useGLTF } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Models for each service
@@ -18,7 +18,7 @@ const ModelTypes = {
 const ElectricalModel = () => {
   const mesh = useRef<THREE.Mesh>(null!);
   
-  useFrame((state) => {
+  useFrame(() => {
     if (mesh.current) {
       mesh.current.rotation.y += 0.01;
     }
@@ -27,11 +27,11 @@ const ElectricalModel = () => {
   return (
     <mesh ref={mesh}>
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="#9b87f5" />
+      <meshStandardMaterial emissive="#9b87f5" emissiveIntensity={0.5} />
       <group position={[0, 0.7, 0]}>
         <mesh>
           <cylinderGeometry args={[0.3, 0.3, 0.3, 16]} />
-          <meshStandardMaterial color="#6E59A5" />
+          <meshStandardMaterial emissive="#6E59A5" emissiveIntensity={0.5} />
         </mesh>
       </group>
     </mesh>
@@ -41,7 +41,7 @@ const ElectricalModel = () => {
 const RenewableModel = () => {
   const mesh = useRef<THREE.Group>(null!);
   
-  useFrame((state) => {
+  useFrame(() => {
     if (mesh.current) {
       mesh.current.rotation.y += 0.01;
     }
@@ -51,13 +51,13 @@ const RenewableModel = () => {
     <group ref={mesh}>
       <mesh position={[0, 1, 0]}>
         <cylinderGeometry args={[0.1, 0.1, 2, 16]} />
-        <meshStandardMaterial color="#444" />
+        <meshStandardMaterial emissive="#444" emissiveIntensity={0.5} />
       </mesh>
       {[0, 1, 2].map((i) => (
         <group key={i} rotation={[0, (i * Math.PI * 2) / 3, 0]}>
           <mesh position={[0, 2, 0]}>
             <boxGeometry args={[0.6, 0.1, 0.2]} />
-            <meshStandardMaterial color="#9b87f5" />
+            <meshStandardMaterial emissive="#9b87f5" emissiveIntensity={0.5} />
           </mesh>
         </group>
       ))}
@@ -66,9 +66,9 @@ const RenewableModel = () => {
 };
 
 const TechnicalModel = () => {
-  const mesh = useRef<THREE.Mesh>(null!);
+  const mesh = useRef<THREE.Group>(null!);
   
-  useFrame((state) => {
+  useFrame(() => {
     if (mesh.current) {
       mesh.current.rotation.y += 0.01;
     }
@@ -78,11 +78,11 @@ const TechnicalModel = () => {
     <group ref={mesh}>
       <mesh>
         <cylinderGeometry args={[0.5, 0.5, 0.2, 16]} />
-        <meshStandardMaterial color="#444" />
+        <meshStandardMaterial emissive="#444" emissiveIntensity={0.5} />
       </mesh>
       <mesh position={[0, 0.3, 0]}>
         <boxGeometry args={[0.8, 0.4, 0.2]} />
-        <meshStandardMaterial color="#9b87f5" />
+        <meshStandardMaterial emissive="#9b87f5" emissiveIntensity={0.5} />
       </mesh>
     </group>
   );
@@ -91,7 +91,7 @@ const TechnicalModel = () => {
 const MarketingModel = () => {
   const mesh = useRef<THREE.Group>(null!);
   
-  useFrame((state) => {
+  useFrame(() => {
     if (mesh.current) {
       mesh.current.rotation.y += 0.01;
     }
@@ -101,15 +101,15 @@ const MarketingModel = () => {
     <group ref={mesh}>
       <mesh>
         <boxGeometry args={[1, 1.5, 0.2]} />
-        <meshStandardMaterial color="#333" />
+        <meshStandardMaterial emissive="#333" emissiveIntensity={0.5} />
       </mesh>
       <mesh position={[0, 0, 0.15]}>
         <boxGeometry args={[0.8, 0.8, 0.1]} />
-        <meshStandardMaterial color="#9b87f5" />
+        <meshStandardMaterial emissive="#9b87f5" emissiveIntensity={0.5} />
       </mesh>
       <mesh position={[0, -0.5, 0.15]}>
         <cylinderGeometry args={[0.4, 0.4, 0.1, 16]} />
-        <meshStandardMaterial color="#6E59A5" />
+        <meshStandardMaterial emissive="#6E59A5" emissiveIntensity={0.5} />
       </mesh>
     </group>
   );
@@ -118,7 +118,7 @@ const MarketingModel = () => {
 const FabricationModel = () => {
   const mesh = useRef<THREE.Group>(null!);
   
-  useFrame((state) => {
+  useFrame(() => {
     if (mesh.current) {
       mesh.current.rotation.y += 0.01;
     }
@@ -128,15 +128,15 @@ const FabricationModel = () => {
     <group ref={mesh}>
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[1.5, 0.4, 1.5]} />
-        <meshStandardMaterial color="#444" />
+        <meshStandardMaterial emissive="#444" emissiveIntensity={0.5} />
       </mesh>
       <mesh position={[0, 0.7, 0]}>
         <boxGeometry args={[0.4, 1, 0.4]} />
-        <meshStandardMaterial color="#333" />
+        <meshStandardMaterial emissive="#333" emissiveIntensity={0.5} />
       </mesh>
       <mesh position={[0, 1.3, 0]}>
         <sphereGeometry args={[0.3, 16, 16]} />
-        <meshStandardMaterial color="#9b87f5" />
+        <meshStandardMaterial emissive="#9b87f5" emissiveIntensity={0.5} />
       </mesh>
     </group>
   );
@@ -145,7 +145,7 @@ const FabricationModel = () => {
 const ConsultationModel = () => {
   const mesh = useRef<THREE.Group>(null!);
   
-  useFrame((state) => {
+  useFrame(() => {
     if (mesh.current) {
       mesh.current.rotation.y += 0.01;
     }
@@ -155,11 +155,11 @@ const ConsultationModel = () => {
     <group ref={mesh}>
       <mesh>
         <sphereGeometry args={[0.6, 16, 16]} />
-        <meshStandardMaterial color="#6E59A5" />
+        <meshStandardMaterial emissive="#6E59A5" emissiveIntensity={0.5} />
       </mesh>
       <mesh position={[0, 0.8, 0]}>
         <coneGeometry args={[0.3, 0.5, 16]} />
-        <meshStandardMaterial color="#9b87f5" />
+        <meshStandardMaterial emissive="#9b87f5" emissiveIntensity={0.5} />
       </mesh>
     </group>
   );
