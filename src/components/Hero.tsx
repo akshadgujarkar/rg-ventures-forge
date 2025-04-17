@@ -251,26 +251,26 @@ export const Hero = () => {
         className="absolute inset-0 z-0"
       />
       
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5" />
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 z-10" />
       
       {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden z-0">
         <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-primary/5 rounded-full blur-3xl animate-pulse" />
         <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-accent/5 rounded-full blur-3xl animate-pulse" />
         <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s' }} />
       </div>
 
-      <div className="container relative z-10 px-4 py-16 flex flex-col items-center">
+      <div className="container relative z-20 px-4 py-16 flex flex-col items-center">
         <div className="inline-block mb-6 px-4 py-1 bg-secondary/50 rounded-full backdrop-blur-sm">
           <span className="text-sm font-medium text-primary">Innovation Meets Excellence</span>
         </div>
         
         {/* 3D Text component */}
-        <div className="w-full z-20 -mt-8 mb-8">
+        <div className="w-full z-30 my-8">
           <HeroText3D />
         </div>
         
-        <div className="flex gap-4 justify-center mt-4">
+        <div className="flex gap-4 justify-center mt-4 z-30">
           <Button size="lg" className="group btn-glow">
             Get Started
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
