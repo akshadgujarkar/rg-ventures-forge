@@ -8,6 +8,7 @@ import {
   Lightbulb
 } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription } from "./ui/card";
+import { ServicesModels } from "./ServicesModels";
 
 const services = [
   {
@@ -44,8 +45,9 @@ const services = [
 
 export const Services = () => {
   return (
-    <section id="services" className="py-24 bg-secondary/50">
-      <div className="container px-4">
+    <section id="services" className="relative py-24 bg-secondary/50 overflow-hidden">
+      <ServicesModels />
+      <div className="container px-4 relative z-10">
         <div className="text-center mb-16">
           <div className="inline-block mb-3 px-3 py-1 bg-primary/10 rounded-full backdrop-blur-sm">
             <span className="text-sm font-medium text-primary">What We Offer</span>
