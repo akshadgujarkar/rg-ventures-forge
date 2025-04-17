@@ -1,4 +1,3 @@
-
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { useEffect, useRef } from "react";
@@ -240,7 +239,7 @@ export const Hero = () => {
   }, []);
   
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16">
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0 z-0" 
@@ -261,26 +260,24 @@ export const Hero = () => {
         <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s' }} />
       </div>
 
-      <div className="container relative z-10 px-4 py-32">
-        <div className="text-center space-y-8 animate-fade-in">
-          <div className="inline-block mb-2 px-4 py-1 bg-secondary/50 rounded-full backdrop-blur-sm">
-            <span className="text-sm font-medium text-primary">Innovation Meets Excellence</span>
-          </div>
-          
-          {/* 3D Text replacing the regular text */}
-          <div className="mb-8">
-            <HeroText3D />
-          </div>
-          
-          <div className="flex gap-4 justify-center mt-8">
-            <Button size="lg" className="group btn-glow">
-              Get Started
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-            <Button size="lg" variant="secondary">
-              Learn More
-            </Button>
-          </div>
+      <div className="container relative z-10 px-4 py-16 flex flex-col items-center">
+        <div className="inline-block mb-6 px-4 py-1 bg-secondary/50 rounded-full backdrop-blur-sm">
+          <span className="text-sm font-medium text-primary">Innovation Meets Excellence</span>
+        </div>
+        
+        {/* 3D Text component */}
+        <div className="w-full z-20 -mt-8 mb-8">
+          <HeroText3D />
+        </div>
+        
+        <div className="flex gap-4 justify-center mt-4">
+          <Button size="lg" className="group btn-glow">
+            Get Started
+            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Button>
+          <Button size="lg" variant="secondary">
+            Learn More
+          </Button>
         </div>
       </div>
     </section>
