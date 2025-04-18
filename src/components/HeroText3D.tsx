@@ -22,7 +22,7 @@ const Text3DModel = () => {
       <Center position={[0, 0, 0]}>
         <Text3D
           ref={textRef}
-          font="/fonts/inter_bold.json"
+          font="/fonts/inter_bold.json" 
           size={1.8}
           height={0.5}
           curveSegments={16}
@@ -39,7 +39,7 @@ const Text3DModel = () => {
             emissiveIntensity={1.2}
             metalness={0.9}
             roughness={0.1}
-            envMapIntensity={1.5}
+            envMapIntensity={1.5}   
           />
         </Text3D>
       </Center>
