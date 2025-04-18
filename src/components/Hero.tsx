@@ -2,7 +2,9 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { useRef, useEffect } from "react";
-import { HeroText3D } from "./HeroText3D";
+import { MainSection } from "./MainSection";
+import { Typewriter } from "./TypeWriter";
+
 
 export const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -139,7 +141,13 @@ export const Hero = () => {
       <div className="container relative z-20 px-4 md:px-6 py-24 flex flex-col items-center">
         <div className="space-y-2 mb-8 text-center">
           <div className="inline-block px-4 py-1.5 bg-secondary/50 rounded-full backdrop-blur-sm border border-border/30 mb-4">
-            <span className="text-sm font-medium text-primary">Innovating for Tomorrow</span>
+            {/* <span className="text-sm font-medium text-primary">Innovating for Tomorrow</span> */}
+            <Typewriter
+                text={["Welcome to RG Ventures", "Industrial gifting supply", "Marketing"]}
+                speed={100}
+                loop={true}
+                className=" text-sm font-medium text-primary"
+            />
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70 pb-2">
             Industrial Excellence
@@ -150,8 +158,9 @@ export const Hero = () => {
         </div>
         
         {/* 3D Text component */}
-        <div className="w-full z-30 my-8">
-          <HeroText3D />
+        <div className="w-full">
+         <MainSection />
+       
         </div>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8 z-30">
