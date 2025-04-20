@@ -14,18 +14,6 @@ import { ArrowRight } from "lucide-react";
 
 const services = [
   {
-    title: "Electrical & Instrumentation",
-    description: "State-of-the-art sensors, PLCs, and control systems from leading global brands.",
-    icon: Cpu,
-    color: "bg-blue-500/10 text-blue-500",
-  },
-  {
-    title: "Renewable Energy",
-    description: "Comprehensive solar solutions and sustainable energy systems for the future.",
-    icon: Wind,
-    color: "bg-green-500/10 text-green-500",
-  },
-  {
     title: "Technical Supply",
     description: "Premium quality industrial components and equipment for various applications.",
     icon: Wrench,
@@ -36,6 +24,18 @@ const services = [
     description: "Strategic market analysis and positioning for industrial businesses.",
     icon: BadgePercent,
     color: "bg-purple-500/10 text-purple-500",
+  },
+  {
+    title: "Electrical & Instrumentation",
+    description: "State-of-the-art sensors, PLCs, and control systems from leading global brands.",
+    icon: Cpu,
+    color: "bg-blue-500/10 text-blue-500",
+  },
+  {
+    title: "Renewable Energy",
+    description: "Comprehensive solar solutions and sustainable energy systems for the future.",
+    icon: Wind,
+    color: "bg-green-500/10 text-green-500",
   },
   {
     title: "Fabrication & Erection",

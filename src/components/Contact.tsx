@@ -72,18 +72,6 @@ export const Contact = () => {
                   </div>
                 </div>
               </div>
-              
-              <div className="pt-4 border-t border-border/30">
-                <h4 className="text-lg font-medium mb-4">Our Global Presence</h4>
-                <ul className="space-y-2">
-                  {['United States', 'United Kingdom', 'Singapore', 'Australia'].map((location) => (
-                    <li key={location} className="flex items-center gap-2 text-sm">
-                      <Check className="h-4 w-4 text-primary" />
-                      <span>{location}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </CardContent>
           </Card>
 

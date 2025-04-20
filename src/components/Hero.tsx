@@ -174,7 +174,7 @@ export const Hero = () => {
         </div>
 
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center z-20">
-          {['20+ Years Experience', 'Global Presence', '500+ Projects', 'Industry Leaders'].map((stat, index) => (
+          {['20+ Years Experience', '500+ Projects', 'Industry Leaders','Advisory Services'].map((stat, index) => (
             <div key={index} className="p-4 rounded-xl backdrop-blur-sm border border-border/30 bg-background/40">
               <p className="font-semibold text-foreground">{stat}</p>
             </div>

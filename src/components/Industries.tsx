@@ -17,7 +17,7 @@ const industries = [
   },
   {
     name: "Manufacturing",
-    tags: ["Drives", "Automation", "Efficiency"],
+    tags: ["Full-Spectrum Supplier","B2B Supplier"],
     image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=500&h=350&q=80&fit=crop",
   },
   {

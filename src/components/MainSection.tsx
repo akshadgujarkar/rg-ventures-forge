@@ -22,7 +22,7 @@ function MainSection() {
   return (
     <div className="flex items-center justify-center flex-col">
         
-        <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-bold font-regular">
+        <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-bold font-regular font-mono">
               <span className="text-spektr-cyan-50  "> RG Ventures is entirely</span>
               <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
                 &nbsp;
