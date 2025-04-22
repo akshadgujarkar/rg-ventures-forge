@@ -3,6 +3,7 @@ import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { useEffect, useRef } from "react";
 import { ArrowRight, Tags } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const industries = [
   {
@@ -113,7 +114,7 @@ export const Industries = () => {
                     ))}
                   </div>
                   <div className="mt-auto flex items-center text-sm text-foreground/70 group-hover:text-primary transition-colors">
-                    <span>Learn more</span>
+                   <Link to={`programs/${industry.name}`}><span>Learn more</span></Link>
                     <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
