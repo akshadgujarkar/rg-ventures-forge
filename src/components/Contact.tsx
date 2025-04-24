@@ -12,11 +12,9 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/t
 
 export const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const { toast } = useToast();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormState('submitting');
     toast({
       title: "Submitting inquiry...",
       description: "Please wait while we process your request.",
@@ -27,11 +25,6 @@ export const Contact = () => {
     const email = formData.get('email') as string;
     const subject = formData.get('subject') as string;
     const message = formData.get('message') as string;
-
-    if (!name || !email || !message) {
-      setFormState('error');
-      return;
-    }
 
     try {
       // Save to Firestore
@@ -50,8 +43,6 @@ export const Contact = () => {
         company: subject,
         problem: message,
       });
-
-      setFormState('success');
       toast({
         title: "Inquiry Submitted Successfully!",
         description: "Thank you for reaching out. We'll get back to you shortly!",
@@ -60,7 +51,6 @@ export const Contact = () => {
       if (formRef.current) formRef.current.reset();
     } catch (error) {
       console.error("Submission error:", error);
-      setFormState('error');
     }
   };
 
@@ -190,17 +180,11 @@ export const Contact = () => {
                   className="w-full group"
                   size="lg"
                   type="submit"
-                  disabled={formState === 'submitting'}
                 >
-                  {formState === 'idle' && (
-                    <>
-                      Send Message
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </>
-                  )}
-                  {formState === 'submitting' && 'Sending...'}
-                  {formState === 'success' && 'Message Sent!'}
-                  {formState === 'error' && 'Error - Try Again'}
+                  Send Message
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+
+
                 </Button>
               </form>
             </CardContent>
