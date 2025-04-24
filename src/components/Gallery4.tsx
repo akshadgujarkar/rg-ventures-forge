@@ -105,6 +105,15 @@ const data = [
       href: "https://gst.gov.in",
       image: 'GST.png', // No image URL available
     },
+    {
+      id: "iec",
+      title: "Importer-Exporter Code Certificate",
+      description:
+        "Importer-Exporter Code Certificate for RG VENTURES, a proprietorship concern owned by Ganesh Damaji Chawre, issued by the Directorate General of Foreign Trade, Nagpur.",
+      href: "https://dgft.gov.in",
+      image: "ImportExporterCode.png", // No image URL available
+    }
+    
   ];
 
 const Gallery4 = ({
@@ -184,24 +193,24 @@ const Gallery4 = ({
             {items.map((item) => (
               <CarouselItem
                 key={item.id}
-                className="max-w-[320px] pl-[20px] lg:max-w-[360px]"
+                className="max-w-[320px] pl-[20px] lg:max-w-[360px] "
               >
                 <a href={item.href} className="group rounded-xl">
                   <div className="group relative h-full min-h-[27rem] max-w-full overflow-hidden rounded-xl md:aspect-[5/4] lg:aspect-[16/9]">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                      className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105 "
                     />
                     <div className="absolute inset-0 h-full bg-[linear-gradient(hsl(var(--primary)/0),hsl(var(--primary)/0.4),hsl(var(--primary)/0.8)_100%)] mix-blend-multiply" />
                     <div className="absolute inset-x-0 bottom-0 flex flex-col items-start p-5 text-primary-foreground md:p-8 text-[#2a2e2b] backdrop-blur-sm font-light h-[250px] hover:backdrop-blur-0 hover:opacity-0 transition-opacity">
-                      <div className="mb-2 pt-4 text-xl font-normal font-sans md:mb-3 md:pt-4 lg:pt-4 ">
+                      <div className="mb-2 pt-4 text-xl font-normal font-sans md:mb-3 md:pt-4 lg:pt-4 text-black">
                         {item.title}
                       </div>
-                      <div className="mb-8 line-clamp-2 md:mb-12 lg:mb-9">
+                      <div className="mb-8 line-clamp-2 md:mb-12 lg:mb-9 text-black">
                         {item.description}
                       </div>
-                      <div className="flex items-center text-sm">
+                      <div className="flex items-center text-sm text-black">
                         Read more{" "}
                         <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
                       </div>

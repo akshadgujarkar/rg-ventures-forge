@@ -49,11 +49,7 @@ export const Navigation = () => {
           ))}
         </div>
 
-        <div className="hidden md:block">
-          <Button variant="outline" className="border-primary/30 hover:bg-primary/10">
-            Get Started
-          </Button>
-        </div>
+      
 
         {/* Mobile Menu */}
         <Sheet>

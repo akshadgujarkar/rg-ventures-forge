@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 function MainSection() {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
-    () => ["Trading Firm", "A to Z", " industrial material","supplier"],
+    () => ["Trading Firm", "B2B", " industrial material","supplier"],
     []
   );
 
@@ -23,13 +23,13 @@ function MainSection() {
     <div className="flex items-center justify-center flex-col">
         
         <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-bold font-regular font-mono">
-              <span className="text-spektr-cyan-50  "> RG Ventures is entirely</span>
+              <span className="text-spektr-cyan-50 font-bold tracking-tighter text-4xl bg-clip-text  md:text-5xl lg:text-6xl"> RG Ventures is entirely</span>
               <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
                 &nbsp;
                 {titles.map((title, index) => (
                   <motion.span
                     key={index}
-                    className="absolute font-semibold text-4xl md:text-5xl lg:text-6xl "
+                    className="absolute font-bold tracking-tighter bg-clip-text  text-3xl md:text-5xl lg:text-6xl"
 
                     initial={{ opacity: 0, y: "-100" }}
                     transition={{ type: "spring", stiffness: 50 }}
