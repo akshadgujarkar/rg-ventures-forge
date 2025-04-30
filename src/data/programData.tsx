@@ -497,14 +497,14 @@ export const programData = [
         content: (
           <div>
             <p className="mb-4">
-              This specialized training program explores the strategies and operations behind successful industrial and corporate gifting. Participants will learn how to design gifting campaigns, select appropriate sundry items, manage bulk procurement, and create memorable brand experiences through thoughtful and compliant gifting practices.
+              This program explores the strategies and operations behind successful industrial and corporate gifting. We beautifully design gifting campaigns, select appropriate sundry items, manage bulk procurement, and create memorable brand experiences through thoughtful and compliant gifting practices.
             </p>
             <p>
               Ideal for marketing professionals, corporate buyers, and gifting solution providers, this course provides a blend of creative thinking and logistical planning tailored for B2B environments, trade fairs, festive seasons, client onboarding, and employee recognition.
             </p>
           </div>
         ),
-        image: "https://www.giftex.in/exhibition/wp-content/uploads/2020/03/Gifting-Industry.jpg"
+        image: "/Gifting.jpeg"
       },
       {
         title: "Services we provide in this...",

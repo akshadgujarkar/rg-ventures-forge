@@ -21,21 +21,24 @@ export const Navigation = () => {
   }, [scrolled]);
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled 
-          ? "bg-background/80 backdrop-blur-xl border-b border-border/20 shadow-lg shadow-primary/5" 
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+          ? "bg-background/80 backdrop-blur-xl border-b border-border/20 shadow-lg shadow-primary/5"
           : "bg-transparent"
-      }`}
+        }`}
     >
       <div className="container flex items-center justify-between h-20 px-4 md:px-6">
         <div className="flex items-center gap-2">
-          <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-accent"></div>
+          <div
+            className="h-10 w-10 rounded-full bg-center bg-cover"
+            style={{ backgroundImage: "url('/logo.jpeg')" }}
+          ></div>
+
           <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             RG Ventures
           </h1>
         </div>
-        
+
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-10">
           {menuItems.map((item) => (
@@ -49,7 +52,7 @@ export const Navigation = () => {
           ))}
         </div>
 
-      
+
 
         {/* Mobile Menu */}
         <Sheet>
@@ -66,7 +69,7 @@ export const Navigation = () => {
                   RG Ventures
                 </div>
               </div>
-              
+
               {menuItems.map((item) => (
                 <a
                   key={item}
@@ -76,7 +79,7 @@ export const Navigation = () => {
                   {item}
                 </a>
               ))}
-              
+
               <Button className="mt-4 w-full">Get Started</Button>
             </div>
           </SheetContent>

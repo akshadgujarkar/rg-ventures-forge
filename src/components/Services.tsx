@@ -1,8 +1,8 @@
 
-import { 
-  Cpu, 
-  Wind, 
-  Wrench, 
+import {
+  Cpu,
+  Wind,
+  Wrench,
   BadgePercent,
   Factory,
   Lightbulb
@@ -11,6 +11,7 @@ import { Card, CardHeader, CardTitle, CardDescription } from "./ui/card";
 import { ServicesModels } from "./ServicesModels";
 import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const services = [
   {
@@ -68,8 +69,8 @@ export const Services = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <Card 
-              key={service.title} 
+            <Card
+              key={service.title}
               className="hover-card bg-background/50 backdrop-blur-xl border border-border/50 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_25px_rgba(155,135,245,0.15)]"
               style={{ animationDelay: `${index * 100}ms` }}
             >
@@ -85,10 +86,12 @@ export const Services = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <Button variant="outline" className="group border-primary/30 hover:bg-primary/10">
-            View All Services
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Button>
+          <Link to={'/services'}>
+            <Button variant="outline" className="group border-primary/30 hover:bg-primary/10">
+              View All Services
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

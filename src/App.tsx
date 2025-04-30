@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import React from "react";
 import ProgramDetails from "./pages/ProgramDetails";
+import Services from "./pages/Services";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
             <Route path="/programs/:slug" element={<ProgramDetails />} />
+            <Route path="/services" element={<Services/>} />
           </Routes>
           <Toaster />
           <Sonner />

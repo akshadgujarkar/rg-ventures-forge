@@ -34,7 +34,7 @@ const industries = [
   {
     name:"Industrial Gifting",
     tags:["Corporate Gift Solution","Sundry Items"],
-    image:"https://bookblock-business-media.s3.eu-west-2.amazonaws.com/business/2023/01/25110837/Warehouse-Send.jpg"
+    image:"/Gifting.jpeg"
   }
 ];
 
