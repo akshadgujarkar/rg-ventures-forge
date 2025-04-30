@@ -114,7 +114,7 @@ export const Industries = () => {
                     ))}
                   </div>
                   <div className="mt-auto flex items-center text-sm text-foreground/70 group-hover:text-primary transition-colors">
-                   <Link to={`programs/${industry.name}`}><span>Learn more</span></Link>
+                   <Link to={`programs/${industry.name}`}><span>More Information</span></Link>
                     <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>

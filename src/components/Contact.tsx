@@ -119,9 +119,7 @@ export const Contact = () => {
                   </TooltipProvider>
                   <div>
                     <p className="font-medium">Address</p>
-                    <span className="text-sm text-muted-foreground">Gunjan Apartment
-                      <br />     Narkesari Layout
-                      Jayprakash Nagar Nagpur,  </span>
+                    <span className="text-sm text-muted-foreground">30, Gunjan Apartment, Jaiprakash Nagar,     <br /> Wardha Road, Khamla, Nagpur-25.</span>
                   </div>
                 </div>
               </div>

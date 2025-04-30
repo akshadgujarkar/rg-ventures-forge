@@ -71,27 +71,7 @@ const ProgramDetails = () => {
                       />
                     </div>
                   </div>
-                ))}
-                
-                {/* Key Benefits */}
-                {program.benefits && (
-                  <div className="content-section">
-                    <h2 className="text-xl md:text-2xl font-bold mb-6">Key Benefits</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {program.benefits.map((benefit, index) => (
-                        <div key={index} className="flex items-start p-4 bg-card rounded-lg border">
-                          <div className="bg-primary/10 p-2 rounded-lg mr-4">
-                            {benefit.icon}
-                          </div>
-                          <div>
-                            <h3 className="font-medium">{benefit.title}</h3>
-                            <p className="text-sm text-muted-foreground">{benefit.description}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                ))}          
                 
                 {/* CTA */}
                 <div className="program-cta mt-12 p-4 md:p-8 bg-primary/10 rounded-2xl">
@@ -112,29 +92,7 @@ const ProgramDetails = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-              
-              {/* Sidebar */}
-              <div className="lg:col-span-1 mt-8 lg:mt-0">
-                <div className="lg:sticky lg:top-24 space-y-6">                  
-                  {/* Related Programs */}
-                  <Card className="p-4 md:p-6">
-                    <h3 className="font-bold text-lg mb-4">Related Programs</h3>
-                    <div className="space-y-4">
-                      {program.relatedPrograms && program.relatedPrograms.map((relatedProgram, index) => (
-                        <Link to={`/programs/${relatedProgram.slug}`} key={index}>
-                          <div className="flex items-center p-3 hover:bg-accent rounded-lg transition-colors">
-                            <div className="text-primary mr-3 flex-shrink-0">
-                              {relatedProgram.icon}
-                            </div>
-                            <div className="flex-1 text-sm md:text-base">{relatedProgram.title}</div>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </Card>
-                </div>
-              </div>
+              </div>             
             </div>
           </div>
         </section>
